@@ -1,80 +1,31 @@
-# 📦 Docker React App
+# JsonMe
 
-This repository provides a Docker-based environment for running a **Next.js** application in **production**.
+JsonMe is a service that allows you to publish your profile information as an API.  
+After registering an account, you can add details like your favorite music, movies, and hobbies.  
+A unique endpoint will be generated for you, and you can easily retrieve your profile information in JSON format via `curl` or any HTTP request.
 
----
+This project is inspired by the idea of [JSON Resume](https://jsonresume.org/).
 
-## 🚀 Quick Start
+## Features
 
-### 1. Set up environment variables (optional)
+- Freely register and update your profile information
+- Auto-generated API endpoint for each user
+- Retrieve information in simple JSON format
+- Public access without authentication (optional)
 
-```bash
-cp .env.template .env
-```
-
-You can customize options in `.env` if needed.
-
----
-
-### 2. Build and Start the Production Container
+## Example Usage
 
 ```bash
-make up
+curl https://jsonme.app/users/your-username
 ```
 
-This will build the Docker image and start the container.
+Example response:
 
-The app will be accessible at:
-
-```
-http://localhost:3000
-```
-
----
-
-## 🛠️ Useful Commands
-
-| Command     | Description                          |
-|:------------|:-------------------------------------|
-| `make up`   | Build and start the production server |
-| `make down` | Stop and remove the container         |
-
----
-
-## 📂 Project Structure
-
-```
-/project_root
-├── .devcontainer/   # DevContainer environment (development only)
-├── infra/docker/    # Dockerfiles and infrastructure configs
-├── src/             # Next.js project
-├── docker-compose.yml
-├── Makefile
-└── README.md (this file)
-```
-
----
-
-## 📚 For Development
-
-If you want to use a **DevContainer** for active development (with hot reload, flexible environment, etc.), please refer to:
-
-📖 `.devcontainer/README.md`
-
-It explains how to:
-- Create the Next.js app inside the container
-- Use `make create` / `make dev` for development
-- Reopen VSCode in container
-
----
-
-## ⚙️ Notes
-- Production image uses **Ubuntu 22.04** base with minimal setup.
-- Only **production dependencies** are installed inside the container.
-- The Next.js app is built during Docker image creation (`npm run build`).
-- The server runs using `next start`.
-- How do I press and hold a key and have it repeat in VSCode?
-```
-$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
+```json
+{
+  "name": "Eishi Miyazono",
+  "nationality": "Japan",
+  "favorite_music": "Lofi HipHop",
+  "favorite_movie": "Interstellar"
+}
 ```
